@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
+  *{
+    /*  border:1px solid black;/* in this way you can see margin and paddings for debugging purpose*/
+    font-family: abel,sans-serif;
+  }
+  h1{
+    text-align: center;
+  }
+  section{
+
+    margin:30px auto;
+    width:500px;
+    height: 350px;
+    display: flex;
+    align-items: flex-end;
+
+    /*linear-gradient*/
+    background-image: linear-gradient(45deg,#f99,#99f);
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .barContainer{
+    flex:1 /*hepsini eşit bir şekilde yaydı*/
+  }
+  .freq{
+    text-align:center;
+    font-size:10px;
+  }
+
+  .bar{
+    background-image: linear-gradient(#9f9,#0D0,#0F0);
+    width: 60%;
+    margin:5px auto 15px auto; /*center the bars*/
+    border:1px solid black;
+  }
+
+  p{
+    text-align: center;
+    transform: rotate(-90deg);
+  }
+
+  .animated-freq{
+    color:grey;
+    font-size:10px;
+    text-align: center;
+    opacity:0; /*invisible firstly*/
+  }
+  .bar:hover{
+    background: #080;
+  }
+  .bar:hover .animated-freq{
+    animation: grow 0.8s;
+  }
+
+
+  @keyframes grow {
+    30% {opacity:1; transform: scale(10,10);}
+    100%{transform: translateY(-100px) scale(10,10);}
+  }
+
+
+  </style>
+</head>
+<body>
+    <h1>Display of  Equalizer</h1>
+    <section>
+      <script>
+      for(var i=0;i<10;i++)
+      {
+
+        document.write("<div class='barContainer'>");
+        var height=Math.floor(Math.random()*201)+50 //[50-250]
+        document.write(`
+          <div class="freq">${height}</div>
+          <div class="bar" style="height:${height}px">
+              <div class="animated-freq">${height}</div>
+          </div>
+
+          `);
+          // add freq labels 32hz 64hz 128hz .. 16Khz
+          var freq=2**(5+i) //i=0 2**5 -> 32
+          if(freq >1000){
+            document.write(`<p>${Math.floor(freq/1000)}Khz`);
+          }
+          else{
+            document.write(`<p>${Math.floor(freq)}hz`);
+          }
+        document.write("</div>");
+      }
+
+      </script>
+    </section>
+
+</body>
+
+</html>
